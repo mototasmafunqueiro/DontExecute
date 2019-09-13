@@ -1,0 +1,65 @@
+<template>
+  <q-page padding>
+  <div>
+    <template>
+  <div class="q-pa-md">
+    <q-table
+      title="Tarefas"
+      :data="data"
+      :columns="columns"
+      flat
+      hide-bottom
+      row-key="name"
+    />
+    <q-btn round class='salvar' icon="add_circle" @click="adicionarProcesso"/>
+  </div>
+</template>
+  </div>
+  </q-page>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      num: 0,
+      columns: [
+        { name: 'processo', required: true, label: 'Processos', align: 'left', field: 'processo', sortable: true },
+        { name: 'estado', align: 'center', label: 'Estado', field: 'estado', sortable: true },
+        { name: 'tempo', label: 'Tempo de Execução', field: 'tempo', sortable: true },
+        { name: 'semNome', label: 'No Name', field: 'semNome' },
+        { name: 'status', label: 'Status', field: 'status' }
+      ],
+      data: [
+
+      ]
+    }
+  },
+  methods: {
+    adicionarProcesso (processo, estado, tempo, semNome, status) {
+      this.data.push({
+        processo: 'Word',
+        estado: 'Iniciado',
+        tempo: this.contador++,
+        semNome: '',
+        status: 'Executando'
+      })
+    },
+    contadeiro () {
+      setInterval(() => {
+        this.num++
+        this.contadeiro()
+        console.log('Contador: ', this.num)
+      }, 1000)
+    }
+  },
+  created () {
+    this.contadeiro()
+  }
+}
+
+</script>
+
+<style>
+
+</style>
